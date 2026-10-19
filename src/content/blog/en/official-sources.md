@@ -5,9 +5,21 @@ date: 2026-10-20
 ---
 
 Cutefish used to live at cutefishos.com. After development paused in 2022,
-that domain lapsed and was later registered by someone outside the project. The site
-there today carries the Cutefish name and looks like our old website, but it is
-not run by us, and nothing it offers comes from us.
+that domain lapsed and was later registered by someone outside the project.
+The site there today impersonates Cutefish. It presents itself as the
+CutefishOS project and signs as a "CutefishOS Team", reuses the text and
+images of our old website without permission, and links to forum and social
+accounts we have never operated. It is not run by us, and nothing it
+distributes is built or endorsed by us.
+
+On the left, our website in February 2022, as the
+[Wayback Machine archived it](https://web.archive.org/web/20220205022028/https://en.cutefishos.com/);
+on the right, cutefishos.com on October 20, 2026. The product image is the
+same file, byte for byte, and the tagline below it is ours. The rest of the
+page repeats our sections one by one, with the same pictures and much of the
+same text.
+
+![Our website at en.cutefishos.com in February 2022, from the Wayback Machine, beside cutefishos.com on October 20, 2026](../../../assets/blog/cutefishos-com-comparison.png)
 
 Cutefish has not changed hands. It is still developed by the people who
 started it, and there is no other development team.
