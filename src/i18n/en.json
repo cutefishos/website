@@ -1,0 +1,43 @@
+{
+  "site.description": "Cutefish is a Linux distribution built around Cutefish Desktop, a calm, fast desktop environment with its own compositor, toolkit and applications.",
+
+  "nav.blog": "Blog",
+  "nav.about": "About",
+
+  "home.title": "Simple. Calm. Yours.",
+  "home.lead": "Cutefish is a Linux distribution built around Cutefish Desktop, a desktop environment with its own Wayland compositor, toolkit and applications, designed together so every part looks and moves the same way.",
+  "home.primary": "Follow on GitHub",
+  "home.secondary": "Get started",
+  "home.screenshotAlt": "Cutefish Desktop",
+
+  "features.shell.title": "Dock, Launcher and Overview",
+  "features.shell.body": "A dock for running and favourite applications, a full-screen launcher, and an overview of every window and desk.",
+  "features.desks.title": "Virtual desks",
+  "features.desks.body": "Spread your work over several desks and move between them with a three-finger sideways swipe.",
+  "features.glass.title": "Glass surfaces",
+  "features.glass.body": "Panels, menus and the dock blur and tint the wallpaper behind them.",
+  "features.compositor.title": "Own compositor",
+  "features.compositor.body": "cutefish-compositor is a Wayland compositor written for this desktop. It draws the shell, window effects and animations itself.",
+  "features.toolkit.title": "Own toolkit",
+  "features.toolkit.body": "Every Cutefish application is built on cutefish-toolkit, a native C++ toolkit drawn with Skia.",
+  "features.apps.title": "Applications",
+  "features.apps.body": "Files, Terminal, Settings, Calendar, System Monitor, Text Editor, Video Player and screen capture come with the desktop.",
+
+  "blog.title": "Blog",
+  "blog.lead": "News and development notes.",
+  "blog.empty": "No posts yet.",
+  "blog.back": "All posts",
+
+  "about.title": "About",
+  "about.lead": "Cutefish is a Linux distribution, and Cutefish Desktop is the desktop environment at its heart.",
+  "about.body": "The compositor, toolkit, shell and applications are developed together, in the open. Most of Cutefish is released under the BSD 3-Clause License; a few components that carry GPL code, such as the terminal, remain under the GPL.",
+  "about.officialTitle": "Official channels",
+  "about.officialBody": "cutefish.org is the only official website of Cutefish, and github.com/cutefishos is its only source code home. Other domains carrying the Cutefish name are not operated by this project.",
+  "about.contribute": "Contribute on GitHub",
+  "about.supportTitle": "Support Cutefish",
+  "about.supportBody": "If you would like to support the development of Cutefish, you can sponsor it monthly or once through GitHub Sponsors.",
+  "about.sponsor": "Sponsor on GitHub",
+
+  "footer.source": "Source",
+  "footer.support": "Support"
+}

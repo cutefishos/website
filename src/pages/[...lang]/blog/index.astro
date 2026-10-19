@@ -1,0 +1,66 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { formatDate, getPosts, postSlug } from '../../../blog';
+import { type Locale, localePath, localeStaticPaths, t } from '../../../i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const posts = await getPosts(locale);
+---
+
+<Base locale={locale} title={t(locale, 'blog.title')}>
+  <div class="container">
+    <header class="page-header">
+      <h1>{t(locale, 'blog.title')}</h1>
+      <p>{t(locale, 'blog.lead')}</p>
+    </header>
+    <div class="list">
+      {posts.length === 0 && <p>{t(locale, 'blog.empty')}</p>}
+      {posts.map((post) => (
+        <a class="post" href={localePath(locale, `/blog/${postSlug(post.id)}`)}>
+          <time datetime={post.data.date.toISOString()}>{formatDate(locale, post.data.date)}</time>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .list {
+    max-width: var(--text-width);
+    padding-bottom: 96px;
+  }
+
+  .post {
+    display: block;
+    padding: 28px 0;
+    border-top: 1px solid var(--separator);
+    color: var(--text);
+  }
+
+  .post:hover {
+    text-decoration: none;
+  }
+
+  .post:hover h2 {
+    color: var(--highlight);
+  }
+
+  time {
+    color: var(--secondary-text);
+    font-size: 0.875rem;
+  }
+
+  h2 {
+    margin: 4px 0 6px;
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--secondary-text);
+  }
+</style>

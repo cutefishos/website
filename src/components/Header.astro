@@ -1,0 +1,79 @@
+---
+import { type Locale, localePath, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const links = [
+  { href: localePath(locale, '/blog'), label: t(locale, 'nav.blog') },
+  { href: localePath(locale, '/about'), label: t(locale, 'nav.about') },
+];
+
+const current = Astro.url.pathname.replace(/\/$/, '');
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href={localePath(locale)}>
+      <img src="/favicon.svg" alt="" width="28" height="28" />
+      <span>Cutefish</span>
+    </a>
+    <nav>
+      {links.map((link) => (
+        <a href={link.href} aria-current={current.startsWith(link.href) ? 'page' : undefined}>
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--translucent-background);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: 64px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--highlight);
+    font-size: 1.0625rem;
+  }
+
+  .brand:hover {
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    gap: 32px;
+  }
+
+  nav a {
+    color: var(--secondary-text);
+    font-size: 0.9375rem;
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--text);
+    text-decoration: none;
+  }
+</style>

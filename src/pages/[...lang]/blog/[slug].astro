@@ -1,0 +1,48 @@
+---
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import { formatDate, getPosts, postSlug } from '../../../blog';
+import { type Locale, localePath, localeStaticPaths, t } from '../../../i18n';
+
+export async function getStaticPaths() {
+  const paths = await Promise.all(localeStaticPaths().map(async ({ params, props }) => {
+    const posts = await getPosts(props.locale);
+    return posts.map((post) => ({
+      params: { ...params, slug: postSlug(post.id) },
+      props: { ...props, post },
+    }));
+  }));
+
+  return paths.flat();
+}
+
+const { locale, post } = Astro.props as {
+  locale: Locale;
+  post: Awaited<ReturnType<typeof getPosts>>[number];
+};
+const { Content } = await render(post);
+---
+
+<Base locale={locale} title={post.data.title} description={post.data.description}>
+  <article class="container">
+    <header class="page-header">
+      <a href={localePath(locale, '/blog')}>{t(locale, 'blog.back')}</a>
+      <h1>{post.data.title}</h1>
+      <time datetime={post.data.date.toISOString()}>{formatDate(locale, post.data.date)}</time>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .page-header a {
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  time {
+    color: var(--secondary-text);
+  }
+</style>

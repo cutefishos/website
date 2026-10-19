@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import desktop from '../../assets/desktop.png';
+import { type Locale, localeStaticPaths, t } from '../../i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<Base locale={locale}>
+  <section class="hero container">
+    <h1>{t(locale, 'home.title')}</h1>
+    <p class="lead">{t(locale, 'home.lead')}</p>
+    <div class="actions">
+      <a class="button button-primary" href="https://github.com/cutefishos" target="_blank" rel="noopener">{t(locale, 'home.primary')}</a>
+      <a class="button button-secondary" href="https://github.com/cutefishos/getting-started" target="_blank" rel="noopener">{t(locale, 'home.secondary')}</a>
+    </div>
+  </section>
+
+  <section class="container">
+    <Image
+      class="screenshot"
+      src={desktop}
+      alt={t(locale, 'home.screenshotAlt')}
+      widths={[640, 1080, 1600, 2160]}
+      sizes="(max-width: 1128px) calc(100vw - 48px), 1080px"
+      loading="eager"
+    />
+  </section>
+
+  <section class="container highlights">
+    <FeatureGrid locale={locale} />
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 64px;
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0 auto 20px;
+    max-width: 720px;
+    font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+    letter-spacing: -0.025em;
+  }
+
+  .lead {
+    margin: 0 auto 36px;
+    max-width: 560px;
+    color: var(--secondary-text);
+    font-size: 1.125rem;
+    text-wrap: balance;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .screenshot {
+    display: block;
+    width: 100%;
+    border-radius: var(--window-radius);
+    box-shadow:
+      0 0 0 1px var(--separator),
+      0 24px 48px -12px var(--shadow);
+  }
+
+  .highlights {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+</style>

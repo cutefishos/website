@@ -1,0 +1,53 @@
+---
+import { type Locale, localePath, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <span>&copy; {year} Cutefish</span>
+      <div class="links">
+        <a href="https://github.com/cutefishos" target="_blank" rel="noopener">{t(locale, 'footer.source')}</a>
+        <a href={`${localePath(locale, '/about')}#support`}>{t(locale, 'footer.support')}</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    color: var(--secondary-text);
+    font-size: 0.875rem;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-top: 32px;
+    padding-bottom: 48px;
+    border-top: 1px solid var(--separator);
+  }
+
+  .links {
+    display: flex;
+    gap: 24px;
+  }
+
+  a {
+    color: var(--secondary-text);
+  }
+
+  a:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+</style>
