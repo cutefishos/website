@@ -21,9 +21,26 @@ const { locale, post } = Astro.props as {
   post: Awaited<ReturnType<typeof getPosts>>[number];
 };
 const { Content } = await render(post);
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  author: { '@type': 'Organization', name: 'Cutefish', url: 'https://cutefish.org/' },
+  publisher: { '@type': 'Organization', name: 'Cutefish', url: 'https://cutefish.org/' },
+};
 ---
 
-<Base locale={locale} title={post.data.title} description={post.data.description}>
+<Base
+  locale={locale}
+  title={post.data.title}
+  description={post.data.description}
+  published={post.data.date}
+  structuredData={structuredData}
+>
   <article class="container">
     <header class="page-header">
       <a href={localePath(locale, '/blog')}>{t(locale, 'blog.back')}</a>

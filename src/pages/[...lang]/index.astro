@@ -8,9 +8,34 @@ import { type Locale, localeStaticPaths, t } from '../../i18n';
 export const getStaticPaths = localeStaticPaths;
 
 const { locale } = Astro.props as { locale: Locale };
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://cutefish.org/#organization',
+      name: 'Cutefish',
+      alternateName: 'CutefishOS',
+      url: 'https://cutefish.org/',
+      sameAs: [
+        'https://github.com/cutefishos',
+        'https://x.com/cutefishos',
+        'https://github.com/sponsors/cutefishos',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      name: 'Cutefish',
+      alternateName: 'CutefishOS',
+      url: 'https://cutefish.org/',
+      publisher: { '@id': 'https://cutefish.org/#organization' },
+    },
+  ],
+};
 ---
 
-<Base locale={locale}>
+<Base locale={locale} structuredData={structuredData}>
   <section class="hero container">
     <h1>{t(locale, 'home.title')}</h1>
     <p class="lead">{t(locale, 'home.lead')}</p>
