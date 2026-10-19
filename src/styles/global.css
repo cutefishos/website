@@ -102,6 +102,12 @@ h3 {
   max-width: var(--text-width);
   padding-bottom: 96px;
   font-size: 1.0625rem;
+  overflow-wrap: anywhere;
+}
+
+.prose pre {
+  overflow-x: auto;
+  overflow-wrap: normal;
 }
 
 .prose h2 {
