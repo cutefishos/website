@@ -115,6 +115,11 @@ h3 {
   font-size: 1.25rem;
 }
 
+/* Clear of the sticky header when a link jumps to them. */
+.prose :is(h2, h3) {
+  scroll-margin-top: 88px;
+}
+
 .prose img {
   display: block;
   border-radius: 8px;

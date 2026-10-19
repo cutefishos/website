@@ -20,7 +20,8 @@ const { locale, post } = Astro.props as {
   locale: Locale;
   post: Awaited<ReturnType<typeof getPosts>>[number];
 };
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const contents = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -47,8 +48,24 @@ const structuredData = {
       <h1>{post.data.title}</h1>
       <time datetime={post.data.date.toISOString()}>{formatDate(locale, post.data.date)}</time>
     </header>
-    <div class="prose">
-      <Content />
+    <div class="post">
+      <div class="prose">
+        <Content />
+      </div>
+      {contents.length > 1 && (
+        <aside class="contents" aria-labelledby="contents-heading">
+          <h2 id="contents-heading">{t(locale, 'blog.contents')}</h2>
+          <nav aria-labelledby="contents-heading">
+            <ul>
+              {contents.map((heading) => (
+                <li class={heading.depth === 3 ? 'nested' : undefined}>
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+      )}
     </div>
   </article>
 </Base>
@@ -61,5 +78,61 @@ const structuredData = {
 
   time {
     color: var(--secondary-text);
+  }
+
+  .post {
+    display: flex;
+    align-items: flex-start;
+    gap: 64px;
+  }
+
+  .post .prose {
+    flex: 0 1 var(--text-width);
+    min-width: 0;
+  }
+
+  .contents {
+    display: none;
+  }
+
+  /* Below the sticky header, scrolling on its own when it is taller than the window. */
+  @media (min-width: 1000px) {
+    .contents {
+      display: block;
+      position: sticky;
+      top: 88px;
+      flex: 0 0 240px;
+      max-height: calc(100vh - 112px);
+      overflow-y: auto;
+    }
+  }
+
+  .contents h2 {
+    margin: 0 0 12px;
+    font-size: 0.875rem;
+    color: var(--text);
+  }
+
+  .contents ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contents a {
+    display: block;
+    padding: 6px 0;
+    color: var(--secondary-text);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+
+  .contents a:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .contents .nested a {
+    padding-left: 16px;
   }
 </style>

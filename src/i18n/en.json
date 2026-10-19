@@ -28,6 +28,7 @@
   "blog.lead": "News and development notes.",
   "blog.empty": "No posts yet.",
   "blog.back": "All posts",
+  "blog.contents": "Contents",
 
   "about.title": "About",
   "about.lead": "Cutefish is a Linux distribution, and Cutefish Desktop is the desktop environment at its heart.",
