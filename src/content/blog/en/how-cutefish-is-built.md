@@ -1,13 +1,29 @@
 ---
-title: How Cutefish packages are built
-description: Every Cutefish package is built in the open, from public source, by a public workflow, and signed by a key that never leaves it.
+title: How Cutefish packages are built, and how to check them
+description: Cutefish packages and ISOs are built in the open by a public workflow, signed only by that workflow, and every file can be traced back to the build that made it.
 date: 2026-10-20
 ---
 
 Cutefish Desktop now has an APT repository for Debian 13 at
-`deb.cutefish.org`. Since installing a package
-means trusting whoever built it, this post explains exactly how the packages
-are made, so you do not have to take our word for it.
+`deb.cutefish.org`, and nightly ISOs for testing. Installing a package means
+trusting whoever built it, so we built the pipeline to need as little trust as
+possible, and to let you check every step yourself instead of taking our word
+for it.
+
+## In short
+
+- **No one builds by hand.** Every package and ISO is built by a public
+  GitHub Actions workflow, from public source, on a fresh machine that is
+  thrown away afterwards. No developer's computer is involved.
+- **No one signs by hand.** The key that signs the repository is a secret
+  only that workflow can use. Apart from an offline backup, it is never on
+  anyone's computer.
+- **Every file can be traced.** Each one has a public, signed record of the
+  exact repository, commit and build that produced it, kept in a transparency
+  log that nobody, including us, can rewrite.
+- **Tampering is caught.** APT refuses a changed or swapped file, because it
+  no longer matches the signed index, and the file fails the provenance
+  check too.
 
 ## Built in the open
 
@@ -142,6 +158,33 @@ sudo apt install cutefish-desktop
 
 `signed-by` limits the key to this repository, so it cannot vouch for
 packages from anywhere else.
+
+## What an attacker would need
+
+Suppose someone wants to get a malicious package onto your computer through
+Cutefish:
+
+- **Replacing a file on deb.cutefish.org** is not enough. APT checks every
+  package against the signed index, and the index against the signing key,
+  so a swapped file is refused. Its provenance check fails as well.
+- **Stealing the signing key** is not enough either: the key alone cannot
+  upload anything to deb.cutefish.org. Even with the upload key as well, a
+  package built anywhere else has no attestation from the Cutefish workflow,
+  so it fails the provenance check. Only a run of that workflow, with its
+  public log, can produce one.
+- **Changing the source** means pushing a commit to a public repository. It
+  shows up in the history, and the build that picks it up names that commit
+  in the package version and in `commits`.
+- **Changing the build** means changing the workflow, which is public and
+  versioned in the same way, and every run's log shows what it did.
+
+Pull requests and forks never see the signing key or the upload key; GitHub
+only gives secrets to workflows running in the repository itself. The upload
+key can write to the Cutefish storage bucket and nothing else.
+
+What remains is GitHub's own infrastructure, which builds the packages, and
+Sigstore, which records the attestations. We rely on them, as most open
+source projects do.
 
 ## What this does not cover
 
