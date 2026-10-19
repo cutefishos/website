@@ -18,6 +18,7 @@ These are the only official places for Cutefish and Cutefish Desktop:
 
 - Website: [cutefish.org](https://cutefish.org)
 - Source code: [github.com/cutefishos](https://github.com/cutefishos)
+- Packages and ISOs: `deb.cutefish.org`
 - X: [@cutefishos](https://x.com/cutefishos)
 - GitHub Sponsors: [github.com/sponsors/cutefishos](https://github.com/sponsors/cutefishos)
 
@@ -27,10 +28,14 @@ itself.
 
 ## Releases
 
-There are no plans to release a new ISO in the near future. If you find a
-Cutefish or CutefishOS ISO somewhere else, it was not built by us, and we
-cannot vouch for what is in it. Only download Cutefish from the official
-sources above, and do not install builds of unknown origin.
+There is no official release yet. Nightly packages and ISOs for testing are
+published on `deb.cutefish.org`. Both are built in the open by GitHub Actions,
+and every file can be checked against its build; see
+[How Cutefish packages are built](/blog/how-cutefish-is-built).
+
+If you find a Cutefish or CutefishOS ISO anywhere else, it was not built by
+us, and we cannot vouch for what is in it. Only download Cutefish from the
+official sources above, and do not install builds of unknown origin.
 
 ## Forks
 
