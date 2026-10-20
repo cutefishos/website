@@ -112,8 +112,13 @@ h3 {
 }
 
 .prose pre {
+  margin: 24px 0;
+  padding: 16px 20px;
+  border-radius: var(--medium-radius);
   overflow-x: auto;
   overflow-wrap: normal;
+  font-size: 0.875rem;
+  line-height: 1.6;
 }
 
 .prose h2 {
