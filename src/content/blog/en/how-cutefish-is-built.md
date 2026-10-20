@@ -5,7 +5,7 @@ date: 2026-10-20
 ---
 
 Cutefish Desktop now has an APT repository for Debian 13 at
-`deb.cutefish.org`, and nightly ISOs for testing. Installing a package means
+[download.cutefish.org](https://download.cutefish.org), and nightly ISOs for testing. Installing a package means
 trusting whoever built it, so we built the pipeline to need as little trust as
 possible, and to let you check every step yourself instead of taking our word
 for it.
@@ -69,8 +69,8 @@ its log and on the run's summary page:
 - `SHA256SUMS`: the SHA-256 checksum of every file the build produced.
 
 Both are published with the packages, at
-`https://deb.cutefish.org/dists/trixie-nightly/commits` and
-`https://deb.cutefish.org/dists/trixie-nightly/SHA256SUMS`.
+`https://download.cutefish.org/debian/dists/trixie-nightly/commits` and
+`https://download.cutefish.org/debian/dists/trixie-nightly/SHA256SUMS`.
 
 ## Tracing a file back to its build
 
@@ -101,9 +101,9 @@ The live ISO is built the same way, by
 [`.github/workflows/iso.yml`](https://github.com/cutefishos/packaging/blob/main/.github/workflows/iso.yml)
 in the same repository, from the
 [live-build configuration](https://github.com/cutefishos/packaging/tree/main/iso)
-next to it. It installs the Cutefish packages from deb.cutefish.org and
+next to it. It installs the Cutefish packages from download.cutefish.org and
 everything else from the official Debian archive. Nightly ISOs are published
-on deb.cutefish.org, each with three files:
+on download.cutefish.org, each with three files:
 
 - `.iso`: the image.
 - `.iso.sha256`: its SHA-256 checksum.
@@ -113,10 +113,10 @@ on deb.cutefish.org, each with three files:
 its attestation:
 
 ```
-name=$(curl -fsSL https://deb.cutefish.org/iso/nightly/LATEST)
-curl -fLO "https://deb.cutefish.org/iso/nightly/$name.iso"
-curl -fLO "https://deb.cutefish.org/iso/nightly/$name.iso.sha256"
-curl -fLO "https://deb.cutefish.org/iso/nightly/$name.packages"
+name=$(curl -fsSL https://download.cutefish.org/iso/nightly/LATEST)
+curl -fLO "https://download.cutefish.org/iso/nightly/$name.iso"
+curl -fLO "https://download.cutefish.org/iso/nightly/$name.iso.sha256"
+curl -fLO "https://download.cutefish.org/iso/nightly/$name.packages"
 sha256sum -c "$name.iso.sha256"
 gh attestation verify "$name.iso" --repo cutefishos/packaging
 ```
@@ -139,7 +139,7 @@ repository. Only the build workflow can read it, and nothing else ever signs
 with it. Apart from that secret, the only copy is an offline backup. Releases
 are not signed by hand on someone's laptop.
 
-Uploading to deb.cutefish.org works the same way: the storage behind it only
+Uploading to download.cutefish.org works the same way: the storage behind it only
 accepts uploads with a key that, again, only the build workflow holds.
 
 ## Installing
@@ -148,9 +148,9 @@ Download the key, check that its fingerprint matches the one above, and add
 the repository:
 
 ```
-sudo curl -fsSLo /etc/apt/keyrings/cutefish.asc https://deb.cutefish.org/cutefish.asc
+sudo curl -fsSLo /etc/apt/keyrings/cutefish.asc https://download.cutefish.org/debian/cutefish.asc
 gpg --show-keys /etc/apt/keyrings/cutefish.asc
-echo "deb [signed-by=/etc/apt/keyrings/cutefish.asc] https://deb.cutefish.org trixie-nightly main" \
+echo "deb [signed-by=/etc/apt/keyrings/cutefish.asc] https://download.cutefish.org/debian trixie-nightly main" \
   | sudo tee /etc/apt/sources.list.d/cutefish.list
 sudo apt update
 sudo apt install cutefish-desktop
@@ -164,11 +164,11 @@ packages from anywhere else.
 Suppose someone wants to get a malicious package onto your computer through
 Cutefish:
 
-- **Replacing a file on deb.cutefish.org** is not enough. APT checks every
+- **Replacing a file on download.cutefish.org** is not enough. APT checks every
   package against the signed index, and the index against the signing key,
   so a swapped file is refused. Its provenance check fails as well.
 - **Stealing the signing key** is not enough either: the key alone cannot
-  upload anything to deb.cutefish.org. Even with the upload key as well, a
+  upload anything to download.cutefish.org. Even with the upload key as well, a
   package built anywhere else has no attestation from the Cutefish workflow,
   so it fails the provenance check. Only a run of that workflow, with its
   public log, can produce one.
@@ -197,6 +197,6 @@ testing, and things in it can break.
 
 ## Only from official sources
 
-Packages and ISOs from anywhere other than deb.cutefish.org and
+Packages and ISOs from anywhere other than download.cutefish.org and
 [github.com/cutefishos](https://github.com/cutefishos) were not built by us.
 See [the official sources of Cutefish](/blog/official-sources) for more.
