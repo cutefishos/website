@@ -8,8 +8,8 @@
 
   "home.title": "Simple. Calm. Yours.",
   "home.lead": "Cutefish is a Linux distribution built around Cutefish Desktop, designed from the compositor up so every part looks and moves the same way. Your agents can use it too, whenever you allow them.",
-  "home.primary": "Follow on GitHub",
-  "home.secondary": "Get started",
+  "home.primary": "Download",
+  "home.secondary": "Build from Source",
   "home.screenshotAlt": "Cutefish Desktop",
 
   "features.agents.title": "Built for agents",
