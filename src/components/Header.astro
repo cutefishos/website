@@ -10,6 +10,7 @@ const { locale } = Astro.props;
 const links = [
   { href: localePath(locale, '/blog'), label: t(locale, 'nav.blog') },
   { href: localePath(locale, '/about'), label: t(locale, 'nav.about') },
+  { href: 'https://github.com/sponsors/cutefishos', label: t(locale, 'nav.sponsor'), external: true },
 ];
 
 const current = Astro.url.pathname.replace(/\/$/, '');
@@ -23,9 +24,15 @@ const current = Astro.url.pathname.replace(/\/$/, '');
     </a>
     <nav>
       {links.map((link) => (
-        <a href={link.href} aria-current={current.startsWith(link.href) ? 'page' : undefined}>
-          {link.label}
-        </a>
+        link.external ? (
+          <a href={link.href} target="_blank" rel="noopener">
+            {link.label}
+          </a>
+        ) : (
+          <a href={link.href} aria-current={current.startsWith(link.href) ? 'page' : undefined}>
+            {link.label}
+          </a>
+        )
       ))}
     </nav>
   </div>
@@ -64,6 +71,12 @@ const current = Astro.url.pathname.replace(/\/$/, '');
   nav {
     display: flex;
     gap: 32px;
+  }
+
+  @media (max-width: 399px) {
+    nav {
+      gap: 16px;
+    }
   }
 
   nav a {
