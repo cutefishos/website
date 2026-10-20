@@ -1,10 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { type Locale, localeStaticPaths, t } from '../../i18n';
+import { type Locale, localePath, localeStaticPaths, t } from '../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
 const { locale } = Astro.props as { locale: Locale };
+
+const channels = [
+  { label: t(locale, 'about.channelWebsite'), text: 'cutefish.org', href: 'https://cutefish.org' },
+  { label: t(locale, 'about.channelSource'), text: 'github.com/cutefishos', href: 'https://github.com/cutefishos' },
+  { label: t(locale, 'about.channelDownloads'), text: 'download.cutefish.org', href: 'https://download.cutefish.org' },
+  { label: t(locale, 'about.channelX'), text: '@cutefishos', href: 'https://x.com/cutefishos' },
+  { label: t(locale, 'about.channelSponsors'), text: 'github.com/sponsors/cutefishos', href: 'https://github.com/sponsors/cutefishos' },
+];
 ---
 
 <Base locale={locale} title={t(locale, 'about.title')}>
@@ -15,12 +23,95 @@ const { locale } = Astro.props as { locale: Locale };
     </header>
     <div class="prose">
       <p>{t(locale, 'about.body')}</p>
+
+      <h2>{t(locale, 'about.openTitle')}</h2>
+      <p>{t(locale, 'about.openBody')}</p>
+      <ul>
+        <li>{t(locale, 'about.licenseBsd')}</li>
+        <li>{t(locale, 'about.licenseGpl')}</li>
+        <li>{t(locale, 'about.licenseWallpapers')}</li>
+      </ul>
+
+      <h2>{t(locale, 'about.buildTitle')}</h2>
+      <p>{t(locale, 'about.buildBody')}</p>
+      <ul>
+        <li>{t(locale, 'about.buildFresh')}</li>
+        <li>{t(locale, 'about.buildSign')}</li>
+        <li>{t(locale, 'about.buildTrace')}</li>
+      </ul>
+      <p>{t(locale, 'about.buildCheck')}</p>
+      <div class="actions">
+        <a class="button button-primary" href="https://download.cutefish.org/" target="_blank" rel="noopener">{t(locale, 'about.downloads')}</a>
+        <a class="button button-secondary" href={localePath(locale, '/blog/how-cutefish-is-built')}>{t(locale, 'about.buildGuide')}</a>
+      </div>
+
       <h2>{t(locale, 'about.officialTitle')}</h2>
       <p>{t(locale, 'about.officialBody')}</p>
-      <a class="button button-primary" href="https://github.com/cutefishos" target="_blank" rel="noopener">{t(locale, 'about.contribute')}</a>
-      <h2 id="support">{t(locale, 'about.supportTitle')}</h2>
-      <p>{t(locale, 'about.supportBody')}</p>
-      <a class="button button-primary" href="https://github.com/sponsors/cutefishos" target="_blank" rel="noopener">{t(locale, 'about.sponsor')}</a>
+      <dl class="channels">
+        {channels.map((channel) => (
+          <div>
+            <dt>{channel.label}</dt>
+            <dd><a href={channel.href} target="_blank" rel="noopener">{channel.text}</a></dd>
+          </div>
+        ))}
+      </dl>
+
+      <h2 id="support">{t(locale, 'about.involvedTitle')}</h2>
+      <p>{t(locale, 'about.involvedBody')}</p>
+      <div class="actions">
+        <a class="button button-primary" href="https://github.com/sponsors/cutefishos" target="_blank" rel="noopener">{t(locale, 'about.sponsor')}</a>
+        <a class="button button-secondary" href="https://github.com/cutefishos" target="_blank" rel="noopener">{t(locale, 'about.contribute')}</a>
+      </div>
     </div>
   </div>
 </Base>
+
+<style>
+  ul {
+    margin: 12px 0;
+    padding-left: 1.25em;
+  }
+
+  li + li {
+    margin-top: 4px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .channels {
+    margin: 16px 0 0;
+    border-radius: var(--medium-radius);
+    background: var(--alternate-background);
+  }
+
+  .channels div {
+    display: grid;
+    grid-template-columns: 9em minmax(0, 1fr);
+    gap: 16px;
+    padding: 10px 16px;
+  }
+
+  .channels div + div {
+    border-top: 1px solid var(--separator);
+  }
+
+  .channels dt {
+    color: var(--secondary-text);
+  }
+
+  .channels dd {
+    margin: 0;
+  }
+
+  @media (max-width: 499px) {
+    .channels div {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+  }
+</style>
