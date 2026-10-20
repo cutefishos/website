@@ -32,7 +32,7 @@
   "blog.contents": "Contents",
 
   "about.title": "About",
-  "about.lead": "Cutefish is a Linux distribution, and Cutefish Desktop is the desktop environment at its heart.",
+  "about.lead": "Cutefish, formerly CutefishOS, is a Linux distribution, and Cutefish Desktop is the desktop environment at its heart.",
   "about.body": "The compositor, toolkit, shell and applications are developed together, in the open. Most of Cutefish is released under the BSD 3-Clause License; a few components that carry GPL code, such as the terminal, remain under the GPL.",
   "about.officialTitle": "Official channels",
   "about.officialBody": "cutefish.org is the only official website of Cutefish, and github.com/cutefishos is its only source code home. Other domains carrying the Cutefish name are not operated by this project.",
