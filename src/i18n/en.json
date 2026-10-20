@@ -1,5 +1,5 @@
 {
-  "site.title": "Cutefish - A beautiful Linux distribution",
+  "site.title": "Cutefish - A beautiful, agentic Linux distribution",
   "site.description": "Cutefish, also known as CutefishOS, is a Linux distribution built around Cutefish Desktop, a calm, fast desktop environment with its own compositor, toolkit and applications.",
 
   "nav.blog": "Blog",
@@ -12,16 +12,16 @@
   "home.secondary": "Get started",
   "home.screenshotAlt": "Cutefish Desktop",
 
+  "features.agents.title": "Built for agents",
+  "features.agents.body": "Agents such as Claude Code and Codex can see and use the desktop once you allow it, and stop the moment you say so.",
   "features.shell.title": "Dock, Launcher and Overview",
   "features.shell.body": "A dock for running and favourite applications, a full-screen launcher, and an overview of every window and desk.",
   "features.desks.title": "Virtual desks",
   "features.desks.body": "Spread your work over several desks and move between them with a three-finger sideways swipe.",
   "features.glass.title": "Glass surfaces",
   "features.glass.body": "Panels, menus and the dock blur and tint the wallpaper behind them.",
-  "features.compositor.title": "Own compositor",
-  "features.compositor.body": "cutefish-compositor is a Wayland compositor written for this desktop. It draws the shell, window effects and animations itself.",
-  "features.toolkit.title": "Own toolkit",
-  "features.toolkit.body": "Every Cutefish application is built on cutefish-toolkit, a native C++ toolkit drawn with Skia.",
+  "features.compositor.title": "Own compositor and toolkit",
+  "features.compositor.body": "cutefish-compositor draws the shell, window effects and animations itself, and every application is built on cutefish-toolkit, a native C++ toolkit drawn with Skia.",
   "features.apps.title": "Applications",
   "features.apps.body": "Files, Terminal, Settings, Calendar, System Monitor, Text Editor, Video Player and screen capture come with the desktop.",
 
