@@ -8,9 +8,9 @@ interface Props {
 const { locale } = Astro.props;
 
 const links = [
+  { href: 'https://github.com/sponsors/cutefishos', label: t(locale, 'nav.sponsor'), external: true },
   { href: localePath(locale, '/blog'), label: t(locale, 'nav.blog') },
   { href: localePath(locale, '/about'), label: t(locale, 'nav.about') },
-  { href: 'https://github.com/sponsors/cutefishos', label: t(locale, 'nav.sponsor'), external: true },
 ];
 
 const current = Astro.url.pathname.replace(/\/$/, '');
