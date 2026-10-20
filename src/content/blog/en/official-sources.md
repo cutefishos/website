@@ -38,17 +38,6 @@ Any other website, repository, forum, subreddit or account using the Cutefish
 or CutefishOS name is not operated by this project, whatever it says about
 itself.
 
-## Releases
-
-There is no official release yet. Nightly packages and ISOs for testing are
-published on [download.cutefish.org](https://download.cutefish.org). Both are built in the open by GitHub Actions,
-and every file can be checked against its build; see
-[How Cutefish packages are built](/blog/how-cutefish-is-built).
-
-If you find a Cutefish or CutefishOS ISO anywhere else, it was not built by
-us, and we cannot vouch for what is in it. Only download Cutefish from the
-official sources above, and do not install builds of unknown origin.
-
 ## Forks
 
 Most of Cutefish is released under the BSD 3-Clause License, and anyone is
@@ -71,4 +60,30 @@ gitlab.com/cutefishos and cutefishos.com as the official channels. It was not
 posted by us. Cutefish has never had an account on floss.social or a group
 on GitLab, and cutefishos.com has not been ours since 2022.
 
-![The r/CutefishOS post "CutefishOS official sources"](../../../assets/blog/cutefishos-reddit-post.png)
+![The r/CutefishOS post "CutefishOS official sources", by u/spacetrain31 with the flair "CutefishOS Maintainer"](../../../assets/blog/cutefishos-reddit-post.png)
+
+The post comes from u/spacetrain31, who moderates r/CutefishOS under the
+flair "CutefishOS Maintainer" and posted it as an announcement. They are not
+a maintainer of Cutefish. The subreddit is not run by this project either;
+its own description calls it "an unofficial community for discussing the
+OS". The screenshots were taken on October 21, 2026. The red outlines are
+ours; the avatar of the account viewing the page and a reply under the post
+have been blanked out.
+
+![The r/CutefishOS sidebar: "an unofficial community for discussing the OS", with u/spacetrain31 as its only moderator](../../../assets/blog/cutefishos-reddit-sidebar.png)
+
+The post also says that new versions of Cutefish "are not the official
+project". That is false: the Cutefish developed at
+[github.com/cutefishos](https://github.com/cutefishos) and published on
+cutefish.org is the official project, made by the people who started it.
+
+The gitlab.com/cutefishos group it lists was created on June 4, 2024 by
+importing our repositories from GitHub. Apart from a few build and
+translation fixes in June and July 2024, it holds no work of its own, and it
+has had no activity since. Those fixes stayed in that copy. The person
+behind it and behind cutefishos.com has never contributed to Cutefish: there
+is no commit or pull request from them in our repositories, including the
+CutefishOS ones kept in
+[cutefishos-archive](https://github.com/cutefishos-archive), and the issue
+above is all they have sent us. Cutefish is developed only on
+[github.com/cutefishos](https://github.com/cutefishos).
