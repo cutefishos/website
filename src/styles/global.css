@@ -84,7 +84,13 @@ h3 {
 
 .page-header {
   max-width: var(--text-width);
-  padding: 96px 0 40px;
+  padding: 40px 0;
+}
+
+@media (max-width: 899px) {
+  .page-header {
+    padding-top: 24px;
+  }
 }
 
 .page-header h1 {
