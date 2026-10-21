@@ -50,19 +50,17 @@
   "about.downloads": "Downloads",
   "about.buildGuide": "How Cutefish is built",
 
-  "about.officialTitle": "Official channels",
-  "about.officialBody": "These are the only official places for Cutefish. Any other website, repository or account using the Cutefish or CutefishOS name is not operated by this project.",
-  "about.channelWebsite": "Website",
-  "about.channelSource": "Source code",
-  "about.channelDownloads": "Downloads",
-  "about.channelX": "X",
-  "about.channelSponsors": "GitHub Sponsors",
-
   "about.involvedTitle": "Get involved",
   "about.involvedBody": "Bug reports, fixes and translations are welcome as issues and pull requests on GitHub. If you would like to support the work, you can sponsor Cutefish monthly or once through GitHub Sponsors.",
   "about.contribute": "Contribute on GitHub",
   "about.sponsor": "Sponsor on GitHub",
 
-  "footer.source": "Source",
-  "footer.support": "Support"
+  "footer.tagline": "Cutefish, formerly CutefishOS, is a beautiful, agentic Linux distribution built around Cutefish Desktop.",
+  "footer.project": "Project",
+  "footer.rss": "RSS",
+  "footer.get": "Get Cutefish",
+  "footer.downloads": "Downloads",
+  "footer.build": "Build from Source",
+  "footer.community": "Community",
+  "footer.sponsors": "GitHub Sponsors"
 }

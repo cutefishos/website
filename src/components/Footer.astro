@@ -7,16 +7,60 @@ interface Props {
 
 const { locale } = Astro.props;
 const year = new Date().getFullYear();
+
+const groups = [
+  {
+    title: t(locale, 'footer.project'),
+    links: [
+      { href: localePath(locale, '/blog'), label: t(locale, 'nav.blog') },
+      { href: localePath(locale, '/about'), label: t(locale, 'nav.about') },
+      { href: '/rss.xml', label: t(locale, 'footer.rss') },
+    ],
+  },
+  {
+    title: t(locale, 'footer.get'),
+    links: [
+      { href: 'https://download.cutefish.org/', label: t(locale, 'footer.downloads'), external: true },
+      { href: localePath(locale, '/blog/how-cutefish-is-built'), label: t(locale, 'footer.build') },
+    ],
+  },
+  {
+    title: t(locale, 'footer.community'),
+    links: [
+      { href: 'https://github.com/cutefishos', label: 'GitHub', external: true },
+      { href: 'https://github.com/sponsors/cutefishos', label: t(locale, 'footer.sponsors'), external: true },
+      { href: 'https://x.com/cutefishos', label: 'X', external: true },
+      { href: 'https://discord.gg/sQD2ybfGT', label: 'Discord', external: true },
+    ],
+  },
+];
 ---
 
 <footer class="site-footer">
   <div class="container">
-    <div class="row">
+    <div class="top">
+      <p class="tagline">{t(locale, 'footer.tagline')}</p>
+      <nav class="groups">
+        {groups.map((group) => (
+          <div>
+            <h2>{group.title}</h2>
+            <ul>
+              {group.links.map((link) => (
+                <li>
+                  {link.external ? (
+                    <a href={link.href} target="_blank" rel="noopener">{link.label}</a>
+                  ) : (
+                    <a href={link.href}>{link.label}</a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+    </div>
+    <div class="bottom">
       <span>&copy; {year} Cutefish</span>
-      <div class="links">
-        <a href="https://github.com/cutefishos" target="_blank" rel="noopener">{t(locale, 'footer.source')}</a>
-        <a href={`${localePath(locale, '/about')}#support`}>{t(locale, 'footer.support')}</a>
-      </div>
     </div>
   </div>
 </footer>
@@ -27,19 +71,51 @@ const year = new Date().getFullYear();
     font-size: 0.875rem;
   }
 
-  .row {
+  .top {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 8px 24px;
-    padding-top: 32px;
-    padding-bottom: 48px;
+    gap: 40px 48px;
+    padding-top: 48px;
+    padding-bottom: 40px;
     border-top: 1px solid var(--separator);
   }
 
-  .links {
-    display: flex;
-    gap: 24px;
+  .tagline {
+    max-width: 280px;
+    margin: 0;
+  }
+
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(120px, auto));
+    gap: 32px 64px;
+  }
+
+  @media (max-width: 599px) {
+    .groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+    }
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: inherit;
+    letter-spacing: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li + li {
+    margin-top: 8px;
   }
 
   a {
@@ -49,5 +125,11 @@ const year = new Date().getFullYear();
   a:hover {
     color: var(--text);
     text-decoration: none;
+  }
+
+  .bottom {
+    padding-top: 24px;
+    padding-bottom: 48px;
+    border-top: 1px solid var(--separator);
   }
 </style>
