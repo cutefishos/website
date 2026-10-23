@@ -2,7 +2,6 @@
 title: Running Mac apps on Cutefish
 description: Cutefish will be able to run apps made for the Mac, menu bar apps included. What that takes, how it differs from Darling and Wine, and what runs so far.
 date: 2026-10-23
-draft: true
 ---
 
 Cutefish will be able to run apps made for the Mac. Not just regular apps
