@@ -2,6 +2,7 @@
 title: About cutefishos.com and the official sources of Cutefish
 description: Where Cutefish lives, and why cutefishos.com is no longer part of it.
 date: 2026-10-20
+draft: true
 ---
 
 Cutefish used to live at cutefishos.com. After development paused in 2022,

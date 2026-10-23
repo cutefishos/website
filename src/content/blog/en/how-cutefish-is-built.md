@@ -199,4 +199,3 @@ testing, and things in it can break.
 
 Packages and ISOs from anywhere other than download.cutefish.org and
 [github.com/cutefishos](https://github.com/cutefishos) were not built by us.
-See [the official sources of Cutefish](/blog/official-sources) for more.
