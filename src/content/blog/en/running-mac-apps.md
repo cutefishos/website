@@ -97,6 +97,21 @@ It isn't finished yet.
 
 ![Things 3's tutorial project](../../../assets/blog/reef-things.png)
 
+## What won't work
+
+Anything that goes through Apple's servers is out of reach. That includes
+the App Store. A Mac app on Cutefish can't sell you a subscription or an
+in-app purchase, and one you bought on a Mac won't carry over. Apps sold
+only in the Mac App Store can't be installed at all, because the download
+is tied to an Apple account. We need a version from the developer's own
+website.
+
+iCloud is the same. Sign in with Apple doesn't work, and an app that syncs
+through iCloud keeps its data on your computer.
+
+If an app sells licences on its own website or syncs through its own
+service, none of this applies.
+
 ## Where the code comes from
 
 Reef is our own code. It doesn't use code from Darling or from Wine. We
