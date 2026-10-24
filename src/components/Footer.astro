@@ -39,7 +39,10 @@ const groups = [
 <footer class="site-footer">
   <div class="container">
     <div class="top">
-      <p class="tagline">{t(locale, 'footer.tagline')}</p>
+      <div class="about">
+        <p class="tagline">{t(locale, 'footer.tagline')}</p>
+        <p class="copyright">&copy; {year} Cutefish</p>
+      </div>
       <nav class="groups">
         {groups.map((group) => (
           <div>
@@ -59,9 +62,6 @@ const groups = [
         ))}
       </nav>
     </div>
-    <div class="bottom">
-      <span>&copy; {year} Cutefish</span>
-    </div>
   </div>
 </footer>
 
@@ -77,13 +77,20 @@ const groups = [
     justify-content: space-between;
     gap: 40px 48px;
     padding-top: 48px;
-    padding-bottom: 40px;
+    padding-bottom: 48px;
     border-top: 1px solid var(--separator);
   }
 
-  .tagline {
+  .about {
     max-width: 280px;
+  }
+
+  .tagline {
     margin: 0;
+  }
+
+  .copyright {
+    margin: 12px 0 0;
   }
 
   .groups {
@@ -125,11 +132,5 @@ const groups = [
   a:hover {
     color: var(--text);
     text-decoration: none;
-  }
-
-  .bottom {
-    padding-top: 24px;
-    padding-bottom: 48px;
-    border-top: 1px solid var(--separator);
   }
 </style>
