@@ -84,7 +84,9 @@ Itsycal works completely: the date in the status bar, the calendar popup,
 the right-click menu and the settings window.
 
 TextMate, the text editor, and Hex Fiend, the hex editor, open and edit
-files. Below, Hex Fiend is looking at a Linux program.
+files. Below, Hex Fiend is looking at a Linux program. CotEditor, a newer
+editor built partly with SwiftUI, opens, edits and saves files, with its
+syntax colouring, inspector, find panel and settings working.
 
 ![TextMate editing a file on Cutefish](../../../assets/blog/reef-textmate.png)
 
@@ -96,6 +98,40 @@ It isn't finished yet.
 ![Things 3's welcome card, drawn by Cutefish's SwiftUI implementation](../../../assets/blog/reef-things-welcome.png)
 
 ![Things 3's tutorial project](../../../assets/blog/reef-things.png)
+
+## How fast it is
+
+Reef doesn't emulate a processor or translate instructions. A Mac app's own
+code runs directly on your CPU, the same way a Linux program does. What
+costs time is the part we wrote: our AppKit, Foundation and SwiftUI have to
+do the work macOS does for the app, and they are much younger than Apple's.
+
+To see where we stand, we compared CotEditor, a Mac text editor built with
+AppKit and SwiftUI, with Cutefish's own text editor on the same laptop. Both
+open the same files and get the same input.
+
+![CotEditor, a Mac app, and Cutefish Text Editor with the same file open](../../../assets/blog/reef-coteditor.png)
+
+| | CotEditor on Reef | Cutefish Text Editor |
+|---|---|---|
+| Start to first frame | 250 ms | 115 ms |
+| Open a 4,000-line file | 0.36 s | 0.12 s |
+| Open a 20,000-line file | 0.50 s | 0.12 s |
+| Key press to the letter on screen | 22 ms | 18 ms |
+| CPU time to type 80 characters | 1.9 s | 0.17 s |
+| Time to draw a frame while scrolling | 6.0 ms | 1.2 ms |
+| Scrolling and live window resizing | 60 fps | 60 fps |
+
+What you feel is close: text appears within a few milliseconds of the
+native editor, files open in well under a second, and scrolling and
+resizing keep up with the screen. What you don't see is the work behind it.
+CotEditor uses several times the CPU to get there, which costs battery.
+Most of that is in three places: scrolling redraws all the visible text on
+every frame instead of moving what is already drawn, our SwiftUI rebuilds a
+view's whole tree when part of it changes, and handing work between
+background threads takes far more wakeups than on a Mac. These are problems
+in our code, not limits of the approach, and they are what we're working on
+next.
 
 ## What won't work
 
