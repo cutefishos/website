@@ -114,24 +114,39 @@ open the same files and get the same input.
 
 | | CotEditor on Reef | Cutefish Text Editor |
 |---|---|---|
-| Start to first frame | 250 ms | 115 ms |
+| Start to first frame | 235 ms | 115 ms |
 | Open a 4,000-line file | 0.36 s | 0.12 s |
 | Open a 20,000-line file | 0.50 s | 0.12 s |
-| Key press to the letter on screen | 22 ms | 18 ms |
-| CPU time to type 80 characters | 1.9 s | 0.17 s |
-| Time to draw a frame while scrolling | 6.0 ms | 1.2 ms |
+| Key press to the letter on screen | 21 ms | 18 ms |
+| CPU time to type 80 characters | 1.4 s | 0.17 s |
+| Time to draw a frame while scrolling | 4.4 ms | 1.2 ms |
+| Time to draw a frame while resizing the window | 3.8 ms | 1.2 ms |
 | Scrolling and live window resizing | 60 fps | 60 fps |
 
 What you feel is close: text appears within a few milliseconds of the
 native editor, files open in well under a second, and scrolling and
 resizing keep up with the screen. What you don't see is the work behind it.
-CotEditor uses several times the CPU to get there, which costs battery.
-Most of that is in three places: scrolling redraws all the visible text on
-every frame instead of moving what is already drawn, our SwiftUI rebuilds a
-view's whole tree when part of it changes, and handing work between
-background threads takes far more wakeups than on a Mac. These are problems
-in our code, not limits of the approach, and they are what we're working on
-next.
+CotEditor still uses several times the CPU to get there, which costs
+battery.
+
+When this post first went up, typing 80 characters took 1.9 s of CPU time,
+a scrolling frame took 6.0 ms and a frame of live resizing 7.3 ms, with two
+frames drawn for every step of the resize. Since then:
+
+- Scrolling moves the pixels already on screen and draws only the strip
+  that comes into view, instead of redrawing all the visible text.
+- Our SwiftUI keeps the parts of a view that didn't change, and keeps
+  their measured sizes, instead of rebuilding and measuring the whole tree.
+- Typing redraws only the lines a change touches, and work handed between
+  background threads wakes far fewer of them.
+- Resizing draws one frame per step, and no longer measures every menu
+  item of every toolbar pop-up on each frame. It uses less than half the
+  CPU it did.
+
+The rest of the gap is mostly the app's own work: CotEditor lays out three
+nested split views and wraps its text again for every new window width,
+and it asks for some of its redraws itself. These were problems in our
+code, not limits of the approach, and we're still working on them.
 
 ## What won't work
 
