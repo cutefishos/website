@@ -1,5 +1,5 @@
 {
-  "site.title": "Cutefish - A beautiful, agentic Linux distribution",
+  "site.title": "Cutefish - A beautiful, effortless Linux distribution",
   "site.description": "Cutefish, also known as CutefishOS, is a Linux distribution built around Cutefish Desktop, a calm, fast desktop environment with its own compositor, toolkit and applications.",
 
   "nav.blog": "Blog",
@@ -55,7 +55,7 @@
   "about.contribute": "Contribute on GitHub",
   "about.sponsor": "Sponsor on GitHub",
 
-  "footer.tagline": "Cutefish, formerly CutefishOS, is a beautiful, agentic Linux distribution built around Cutefish Desktop.",
+  "footer.tagline": "Cutefish, formerly CutefishOS, is a beautiful, effortless Linux distribution built around Cutefish Desktop.",
   "footer.project": "Project",
   "footer.rss": "RSS",
   "footer.get": "Get Cutefish",
